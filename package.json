@@ -1,5 +1,5 @@
 {
-	"name": "@zynth/vitailse",
+	"name": "cashier",
 	"description": "Vite starter template with TailwindCSS",
 	"version": "0.1.0",
 	"main": "src/main.ts",
@@ -13,7 +13,7 @@
 		"vite",
 		"vitesse"
 	],
-	"author": "Christopher Reeeve",
+	"author": "Adamar Solutions",
 	"license": "MIT",
 	"bugs": {
 		"url": "https://github.com/zynth17/vitailse/issues"
