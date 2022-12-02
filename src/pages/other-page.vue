@@ -29,7 +29,7 @@
 name: other-page
 </route>
 
-<style>
+<style scoped>
 	.slide-fade-enter-active {
 		transition: all 0.3s ease-out;
 	}
@@ -58,5 +58,27 @@ name: other-page
 		100% {
 			transform: scale(1);
 		}
+	}
+
+	/* width */
+	::-webkit-scrollbar {
+		width: 4px;
+	}
+
+	/* Track */
+	::-webkit-scrollbar-track {
+		background: #f1f1f1;
+		margin-left: 100px;
+	}
+
+	/* Handle */
+	::-webkit-scrollbar-thumb {
+		background: #9475ed;
+		border-radius: 10px;
+	}
+
+	/* Handle on hover */
+	::-webkit-scrollbar-thumb:hover {
+		background: #6d52b8d8;
 	}
 </style>
