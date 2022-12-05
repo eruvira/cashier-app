@@ -3,7 +3,7 @@
 		<div
 			v-if="big"
 			ref="pcArr"
-			v-for="pc in test"
+			v-for="pc in pcs"
 			:id="pc.uuid"
 			:data-x="pc.mapX"
 			:data-y="pc.mapY"
@@ -13,13 +13,13 @@
 			<div
 				class="text-white text-xs bg-[#9475ED] h-[1.4rem] w-[1.4rem] rounded-full flex justify-center items-center absolute bottom-[-2px] right-[-2px]"
 			>
-				{{ pc?.number }}
+				{{ pc.number }}
 			</div>
 		</div>
 		<div
 			v-if="!big"
 			ref="pcArr"
-			v-for="pc in test"
+			v-for="pc in pcs"
 			:id="pc.uuid"
 			:data-x="pc.mapX"
 			:data-y="pc.mapY"
@@ -29,16 +29,17 @@
 			<div
 				class="text-white text-xs bg-[#9475ED] h-[1.2rem] w-[1.2rem] rounded-full flex justify-center items-center absolute bottom-[-2px] right-[-2px]"
 			>
-				{{ pc?.number }}
+				{{ pc.number }}
 			</div>
 		</div>
+		<div v-if="!pcs.length" class="text-base">Свободных компьютеров нет</div>
 	</div>
 </template>
 
 <script setup lang="ts">
-	defineProps<{
+	const props = defineProps<{
 		big: Boolean,
-		test1: Array<object>,
+		pcs: Array<object>,
 	}>();
 
 	const pcArr = ref([]);
@@ -59,13 +60,13 @@
 	};
 
 	const calcGrid = () => {
-		let columns = test1.reduce((max, pc) =>
+		let columns = props.pcs.reduce((max, pc) =>
 			max.mapX > pc.mapX ? max : pc
 		);
-		let rows = test1.reduce((max, pc) =>
+		let rows = props.pcs.reduce((max, pc) =>
 			max.mapY > pc.mapY ? max : pc
 		);
-		let pcWrap = document.getElementById(`${test1.uuid}`)?.parentElement
+		let pcWrap = document.getElementById(`${props.pcs.uuid}`)?.parentElement
 
 		if (pcWrap !== null && pcWrap !== undefined) {
 			pcWrap.style.gridTemplateColumns = `repeat(${columns.mapX}, 1fr)`;

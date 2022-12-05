@@ -13,7 +13,7 @@
 		 store.getGivenGameCenter()
 	})
 	const center = computed(() => {
-		return GameCenter.serialize(store.givenGameCenter)
+		return GameCenter.serialize(store.gameCenter)
 	})
 </script>
 
@@ -25,9 +25,9 @@
 				<router-link :to="{ name: 'other-page' }" v-for="(zone, index) in center.zones" :key="index">
 					<div class="h-[400px] text-2xl overflow-auto">
 						<h4 class="text-2xl font-medium sticky">
-							{{zone['name']}}
+							{{zone.name}}
 						</h4>
-						<computer-grid class="my-3 pr-[5px]" :big="false" :test="zone.computers"/>
+						<computer-grid class="my-3 pr-[5px]" :big="false" :pcs="zone.computers"/>
 					</div>
 				</router-link>
 			</div>
@@ -60,12 +60,12 @@ name: home
 	/* width */
 	::-webkit-scrollbar {
 		width: 4px;
+		height: 4px;
 	}
 
 	/* Track */
 	::-webkit-scrollbar-track {
 		background: #f1f1f1;
-		margin-left: 100px;
 	}
 
 	/* Handle */
