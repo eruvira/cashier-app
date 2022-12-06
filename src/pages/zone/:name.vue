@@ -1,9 +1,23 @@
 <script setup lang="ts">
+	import { useStore } from '../../store';
+	import { useRoute } from '@vue-router';
+	import { PC } from '../../models/gameCenter.model'
 	import BackIcon from '~icons/pepicons/angle-left';
 	useHead({
 		title: 'Other Pages',
 	});
-	
+
+	const store = useStore();
+	const route = useRoute();
+	let zoneName = route.params.name;
+
+	onBeforeMount(async () => {
+		await store.getPcs(route.params.name);
+	});
+
+	const pcs = computed(() => {
+		return PC.serializeList(store.pcs)
+	})
 </script>
 
 <template>
@@ -16,11 +30,11 @@
 			<p>Назад</p>
 		</router-link>
 		<transition name="slide-fade" appear>
-			<div class="text-3xl mt-8 font-bold">Test Name Zone</div>
+			<div class="text-3xl mt-8 font-bold">{{ zoneName }} зона</div>
 		</transition>
-	
-		<transition  name="bounce" appear>
-			<ComputerGrid class="my-10" :big="true"/>
+
+		<transition name="bounce" appear>
+			<ComputerGrid class="my-10" :big="true" :pcs="pcs" />
 		</transition>
 	</div>
 </template>

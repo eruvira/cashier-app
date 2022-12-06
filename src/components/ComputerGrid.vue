@@ -37,6 +37,8 @@
 </template>
 
 <script setup lang="ts">
+import { popScopeId } from 'vue';
+
 	const props = defineProps<{
 		big: Boolean,
 		pcs: Array<object>,
@@ -45,6 +47,7 @@
 	const pcArr = ref([]);
 
 	onMounted(() => {
+		if(props.pcs.length)
 		calcGrid();
 		pcArr.value.forEach((elem: any) => calcPos(elem));
 	});

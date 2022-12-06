@@ -62,6 +62,7 @@ export class Zone{
     }
 
     static serializeList(zones: any){
+        if(zones !=undefined)
         return zones.map(Zone.serialize) || []
     }
 }
