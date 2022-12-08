@@ -5,7 +5,7 @@ export const useStore = defineStore('gameCenter', {
 	state: () => ({
 		gameCenters: [],
 		gameCenter: {},
-		pcs: []
+		pcs: [],
 	}),
 
 	actions: {
@@ -17,7 +17,7 @@ export const useStore = defineStore('gameCenter', {
 
 		setPcs(computers: any){
 			this.$patch({
-				pcs: [...computers]
+				pcs: [...computers],
 			})
 		},
 
@@ -41,7 +41,6 @@ export const useStore = defineStore('gameCenter', {
 			await http.get(`partners/game-centers/255324da-c93f-4faf-9041-e2b901da057b/zones/${zone}/computers/`)
 			.then((res) => {
 				this.setPcs(res.data)
-				
 			})
 			.catch((error:Error) => {
 				throw new Error(error.message)

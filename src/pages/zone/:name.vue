@@ -1,23 +1,34 @@
 <script setup lang="ts">
 	import { useStore } from '../../store';
 	import { useRoute } from '@vue-router';
-	import { PC } from '../../models/gameCenter.model'
+	import { PC } from '../../models/gameCenter.model';
 	import BackIcon from '~icons/pepicons/angle-left';
-	useHead({
-		title: 'Other Pages',
-	});
 
 	const store = useStore();
 	const route = useRoute();
 	let zoneName = route.params.name;
 
-	onBeforeMount(async () => {
+	onMounted(async () => {
 		await store.getPcs(route.params.name);
 	});
 
+	useHead({
+		title: zoneName,
+	});
+
 	const pcs = computed(() => {
-		return PC.serializeList(store.pcs)
-	})
+		return PC.serializeList(store.pcs);
+	});
+
+	const popupTrigger = reactive({open: false})
+
+	const openPopUp = () => {
+		popupTrigger.open = true
+	}
+	
+	const closePopUp = () => {
+		popupTrigger.open = false
+	}
 </script>
 
 <template>
@@ -33,9 +44,10 @@
 			<div class="text-3xl mt-8 font-bold">{{ zoneName }} зона</div>
 		</transition>
 
-		<transition name="bounce" appear>
-			<ComputerGrid class="my-10" :big="true" :pcs="pcs" />
+		<transition name="bounce" appear :delay="1000" v-cloak>
+			<ComputerGrid :big="true" :pcs="pcs" @open-popup="openPopUp" class="mt-10"/>
 		</transition>
+		<Popup v-if="popupTrigger.open" @close-popup="closePopUp"/>
 	</div>
 </template>
 
@@ -44,6 +56,9 @@ name: other-page
 </route>
 
 <style scoped>
+	[v-cloak] {
+		display: none;
+	}
 	.slide-fade-enter-active {
 		transition: all 0.3s ease-out;
 	}

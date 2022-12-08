@@ -18,7 +18,7 @@
 </script>
 
 <template>
-	<transition name="bounce" appear>
+	<transition name="bounce" mode="out-in" appear>
 		<div class="px-10 p-5">
 			<h1 class="text-4xl font-medium">{{center.name}}</h1>
 			<div class="grid justify-center mt-10 gap-10 grid-cols-3">
