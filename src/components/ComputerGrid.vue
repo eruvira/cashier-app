@@ -1,42 +1,51 @@
 <template>
 	<div class="grid gap-4">
 		<div
-			v-if="big && pcs.length"
+			v-if="big"
 			ref="pcArr"
 			v-for="pc in pcs"
 			:id="pc.uuid"
 			:data-x="pc.mapX"
 			:data-y="pc.mapY"
 			class="border-[#9475ED] border-2 p-2 flex rounded-[10px] relative cursor-pointer justify-center w-14 h-14"
+			:class="{
+				'border-slate-400 cursor-default pointer-events-none':
+					pc.isBusy,
+			}"
 			v-cloak
 			@click="$emit('openPopup')"
 		>
-			<img src="../assets/pc_icon.svg" />
+			<img v-if="!pc.isBusy" src="../assets/pc_icon.svg" />
+			<img v-else src="../assets/pc_icon_gray.svg" />
 			<div
 				class="text-white text-xs bg-[#9475ED] h-[1.4rem] w-[1.4rem] rounded-full flex justify-center items-center absolute bottom-[-2px] right-[-2px]"
+				:class="{ 'bg-slate-400': pc.isBusy }"
 			>
 				{{ pc.number }}
 			</div>
 		</div>
 		<div
-			v-if="!big && pcs.length"
+			v-if="!big"
 			ref="pcArr"
 			v-for="pc in pcs"
 			:id="pc.uuid"
 			:data-x="pc.mapX"
 			:data-y="pc.mapY"
 			class="border-[#9475ED] border-2 p-2 flex w-[2.5rem] h-[2.5rem] rounded-[8px] relative"
+			:class="{
+				'border-slate-400 cursor-default pointer-events-none':
+					pc.isBusy,
+			}"
 			v-cloak
 		>
-			<img src="../assets/pc_icon.svg" />
+			<img v-if="!pc.isBusy" src="../assets/pc_icon.svg" />
+			<img v-else src="../assets/pc_icon_gray.svg" />
 			<div
 				class="text-white text-xs bg-[#9475ED] h-[1.2rem] w-[1.2rem] rounded-full flex justify-center items-center absolute bottom-[-2px] right-[-2px]"
+				:class="{ 'bg-slate-400': pc.isBusy }"
 			>
 				{{ pc.number }}
 			</div>
-		</div>
-		<div v-if="!props.pcs.length" class="text-base" v-cloak>
-			Свободных компьютеров нет
 		</div>
 	</div>
 </template>

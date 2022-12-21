@@ -26,21 +26,21 @@ export class PC{
     mapX: Number;
     mapY: Number;
     number: Number;
-    status: String;
+    isBusy: Boolean;
     uuid: String;
 
-    constructor({mapX, mapY, number, status, uuid}:{mapX: Number, mapY: Number, number: Number, status: String, uuid: String}){
+    constructor({mapX, mapY, number, isBusy, uuid}:{mapX: Number, mapY: Number, number: Number, isBusy: Boolean, uuid: String}){
         this.mapX = mapX
         this.mapY = mapY
         this.number = number
-        this.status = status
+        this.isBusy = isBusy
         this.uuid = uuid
     }
 
     static serialize({
-        map_x: mapX, map_y: mapY, number, status, uuid
-    }:{map_x: Number, map_y: Number, number: Number, status: String, uuid: String}){
-        return new PC({mapX, mapY, number, status, uuid})
+        map_x: mapX, map_y: mapY, number, is_busy: isBusy, uuid
+    }:{map_x: Number, map_y: Number, number: Number, is_busy: Boolean, uuid: String}){
+        return new PC({mapX, mapY, number, isBusy, uuid})
     }
 
     static serializeList(computers: any){
