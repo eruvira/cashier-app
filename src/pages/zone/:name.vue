@@ -8,8 +8,9 @@
 	const route = useRoute();
 	let zoneName = route.params.name;
 
+
 	onMounted(async () => {
-		await store.getPcs(route.params.name);
+		await store.getPcs(route.query.id);
 	});
 
 	useHead({
@@ -41,7 +42,7 @@
 			<p>Назад</p>
 		</router-link>
 		<transition name="slide-fade" appear>
-			<div class="text-3xl mt-8 font-bold">{{ zoneName }} зона</div>
+			<div class="text-3xl mt-8 font-bold">Зона {{ zoneName }}</div>
 		</transition>
 
 		<transition name="bounce" appear :delay="1000" v-cloak>

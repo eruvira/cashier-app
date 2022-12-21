@@ -49,16 +49,18 @@ export class PC{
 }
 
 export class Zone{
+    uuid: String;
     name: String;
     computers: Array<Object>;
 
-    constructor({name, computers}:{name: String, computers: Array<Object>}){
+    constructor({uuid, name, computers}:{uuid: String, name: String, computers: Array<Object>}){
+        this.uuid = uuid
         this.name = name
         this.computers = computers
     }
 
-    static serialize({name, computers}:{name: String, computers: Array<Object>}){
-        return new Zone({name, computers: PC.serializeList(computers)})
+    static serialize({uuid, name, computers}:{uuid: String; name: String, computers: Array<Object>}){
+        return new Zone({uuid, name, computers: PC.serializeList(computers)})
     }
 
     static serializeList(zones: any){

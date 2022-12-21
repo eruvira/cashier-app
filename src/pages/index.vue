@@ -8,9 +8,10 @@
 
 	const store = useStore();
 	const { t } = useI18n();
-	onBeforeMount( async() => {
+	onMounted( async() => {
 		 await store.getGameCenters()
 		 await store.getGivenGameCenter()
+		 store.pcs = []
 	})
 	const center = computed(() => {
 		return GameCenter.serialize(store.gameCenter)
@@ -22,7 +23,7 @@
 		<div class="px-10 p-5">
 			<h1 class="text-4xl font-medium">{{center.name}}</h1>
 			<div class="grid justify-center mt-10 gap-10 grid-cols-3">
-				<router-link :to="{ path: `/zone/${zone.name}`  }" v-for="(zone, index) in center.zones" :key="index">
+				<router-link :to="{ path: `/zone/${zone.name}`, query: {id: zone.uuid}, props: {id: zone.uuid}}" v-for="(zone, index) in center.zones" :key="index">
 					<div class="h-[400px] text-2xl overflow-auto">
 						<h4 class="text-2xl font-medium sticky">
 							{{zone.name}}

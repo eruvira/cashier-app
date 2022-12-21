@@ -7,7 +7,7 @@
 			:id="pc.uuid"
 			:data-x="pc.mapX"
 			:data-y="pc.mapY"
-			class="border-[#9475ED] border-2 p-2 flex rounded-[10px] relative cursor-pointer justify-center"
+			class="border-[#9475ED] border-2 p-2 flex rounded-[10px] relative cursor-pointer justify-center w-14 h-14"
 			v-cloak
 			@click="$emit('openPopup')"
 		>
