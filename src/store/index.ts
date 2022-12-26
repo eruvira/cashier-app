@@ -33,12 +33,12 @@ export const useStore = defineStore('gameCenter', {
 		},
 
 		async getZonePC(zoneId: String){
-			const response  = await http.get(`partners/game-centers/8cd63754-8975-4b7d-b96e-d46039a13d19/zones/${zoneId}/computers/`)
+			const response  = await http.get(`partners/game-centers/e7d22698-2e68-4d2a-8756-9d25abcb7c7f/zones/${zoneId}/computers/`)
 			return response.data				
 		},
 
 		async getPcs(zone: String){
-			await http.get(`partners/game-centers/8cd63754-8975-4b7d-b96e-d46039a13d19/zones/${zone}/computers/`)
+			await http.get(`partners/game-centers/e7d22698-2e68-4d2a-8756-9d25abcb7c7f/zones/${zone}/computers/`)
 			.then((res) => {
 				this.setPcs(res.data)
 			})
@@ -48,7 +48,7 @@ export const useStore = defineStore('gameCenter', {
 		},
 
 		async getGivenGameCenter(){
-			let currentGameCenter = this.gameCenters.find(x => x['uuid'] == "8cd63754-8975-4b7d-b96e-d46039a13d19") || {}
+			let currentGameCenter = this.gameCenters.find(x => x['uuid'] == "e7d22698-2e68-4d2a-8756-9d25abcb7c7f") || {} as any
 			let currentGameCenterZones = currentGameCenter.zones
 			let zonesArray:Array<Object> = []
 			for (const zone of currentGameCenterZones){

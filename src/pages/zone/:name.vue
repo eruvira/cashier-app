@@ -6,11 +6,11 @@
 
 	const store = useStore();
 	const route = useRoute();
-	let zoneName = route.params.name;
+	const zoneName = route.params.name;
 
 
 	onMounted(async () => {
-		await store.getPcs(route.query.id);
+		await store.getPcs(route.query.id as any);
 	});
 
 	useHead({

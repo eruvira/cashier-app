@@ -51,9 +51,10 @@
 </template>
 
 <script setup lang="ts">
+	import {PC} from '../models/gameCenter.model'
 	const props = defineProps<{
 		big: Boolean;
-		pcs: Array<object>;
+		pcs: Array<PC>;
 	}>();
 
 	const pcArr = ref([]);

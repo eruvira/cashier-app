@@ -14,7 +14,7 @@
 		 store.pcs = []
 	})
 	const center = computed(() => {
-		return GameCenter.serialize(store.gameCenter)
+		return GameCenter.serialize(store.gameCenter as any)
 	})
 </script>
 
@@ -26,7 +26,7 @@
 				<router-link :to="{ path: `/zone/${zone.name}`, query: {id: zone.uuid}, props: {id: zone.uuid}}" v-for="(zone, index) in center.zones" :key="index">
 					<div class="h-[400px] text-2xl overflow-auto">
 						<h4 class="text-2xl font-medium sticky">
-							{{zone.name}}
+							{{zone["name"]}}
 						</h4>
 						<computer-grid class="my-3 pr-[5px]" :big="false" :pcs="zone.computers"/>
 					</div>

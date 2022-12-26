@@ -1,9 +1,9 @@
 <template>
-	<Transition name="modal">
-		<div
-			class="fixed top-0 right-0 left-0 bottom-0 z-50 bg-black/20 flex items-center justify-center"
-			@click="$emit('closePopup')"
-		>
+	<div
+		class="fixed top-0 right-0 left-0 bottom-0 z-50 bg-black/20 flex items-center justify-center"
+		@click="$emit('closePopup')"
+	>
+		<transition name="pop" appear>
 			<div class="bg-white rounded-[10px] p-5 w-1/2 h-1/2">
 				<div class="flex items-center justify-between">
 					<div class="text-2xl font-bold">Оплата</div>
@@ -36,25 +36,39 @@
 					</div>
 				</div>
 			</div>
-		</div>
-	</Transition>
+		</transition>
+	</div>
 </template>
 
 <script setup lang="ts">
 	import MiClose from '~icons/mi/close';
 
+	const props = defineProps<{
+		open: Boolean;
+	}>();
+
 	const loading = reactive({ isLoading: true });
+	const change = function () {
+		loading.isLoading = false;
+	};
 
-	const change = function(){
-		loading.isLoading = false
-	}
-
-	setTimeout(change, 2000)
+	setTimeout(change, 2000);
 </script>
 
 <style scoped>
+	.pop-enter-active,
+	.pop-leave-active {
+		transition: transform 0.4s cubic-bezier(0.5, 0, 0.5, 1),
+			opacity 0.4s linear;
+	}
+
+	.pop-enter,
+	.pop-leave-to {
+		opacity: 0;
+		transform: scale(0.3) translateY(-50%);
+	}
 	.spinner {
-		 animation: rotator 4s linear infinite; 
+		animation: rotator 4s linear infinite;
 	}
 
 	@keyframes rotator {
@@ -69,8 +83,7 @@
 		stroke-dasharray: 187;
 		stroke-dashoffset: 0;
 		transform-origin: center;
-		animation: dash 1s ease-in-out infinite,
-			colors 4s ease-in-out infinite;
+		animation: dash 1s ease-in-out infinite, colors 4s ease-in-out infinite;
 	}
 
 	@keyframes colors {

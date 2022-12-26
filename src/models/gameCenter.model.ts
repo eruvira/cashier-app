@@ -1,9 +1,9 @@
 export class GameCenter{
-    uuid: String;
-    name: String;
+    uuid: string;
+    name: string;
     zones:  Array<object>;
 
-    constructor({uuid, name, zones}:{uuid: String, name: String, zones: Array<object>}){
+    constructor({uuid, name, zones}:{uuid: string, name: string, zones: Array<object>}){
         this.uuid = uuid
         this.name = name
         this.zones = zones 
@@ -14,7 +14,7 @@ export class GameCenter{
         name,
         zones
     } :{
-        uuid: String, name: String, zones: Array<object>
+        uuid: string, name: string, zones: Array<object>
     }){
         return new GameCenter({
             uuid, name, zones: Zone.serializeList(zones)
@@ -27,9 +27,9 @@ export class PC{
     mapY: Number;
     number: Number;
     isBusy: Boolean;
-    uuid: String;
+    uuid: string;
 
-    constructor({mapX, mapY, number, isBusy, uuid}:{mapX: Number, mapY: Number, number: Number, isBusy: Boolean, uuid: String}){
+    constructor({mapX, mapY, number, isBusy, uuid}:{mapX: Number, mapY: Number, number: Number, isBusy: Boolean, uuid: string}){
         this.mapX = mapX
         this.mapY = mapY
         this.number = number
@@ -39,7 +39,7 @@ export class PC{
 
     static serialize({
         map_x: mapX, map_y: mapY, number, is_busy: isBusy, uuid
-    }:{map_x: Number, map_y: Number, number: Number, is_busy: Boolean, uuid: String}){
+    }:{map_x: Number, map_y: Number, number: Number, is_busy: Boolean, uuid: string}){
         return new PC({mapX, mapY, number, isBusy, uuid})
     }
 
@@ -49,17 +49,17 @@ export class PC{
 }
 
 export class Zone{
-    uuid: String;
-    name: String;
+    uuid: string;
+    name: string;
     computers: Array<Object>;
 
-    constructor({uuid, name, computers}:{uuid: String, name: String, computers: Array<Object>}){
+    constructor({uuid, name, computers}:{uuid: string, name: string, computers: Array<Object>}){
         this.uuid = uuid
         this.name = name
         this.computers = computers
     }
 
-    static serialize({uuid, name, computers}:{uuid: String; name: String, computers: Array<Object>}){
+    static serialize({uuid, name, computers}:{uuid: string; name: string, computers: Array<Object>}){
         return new Zone({uuid, name, computers: PC.serializeList(computers)})
     }
 
