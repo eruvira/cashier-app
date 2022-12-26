@@ -1,9 +1,11 @@
 import App from '@/App.vue';
 import { ViteSSG } from 'vite-ssg';
 
+import axios from 'axios';
 import '@/styles/index.css';
 import { ViteSetupModule } from './types/ViteSetupModule';
 import { extendedRoutes } from '@/router';
+
 
 export const createApp = ViteSSG(
 	App,
@@ -17,3 +19,4 @@ export const createApp = ViteSSG(
 	},
 	{}
 );
+
